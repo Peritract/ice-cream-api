@@ -1,5 +1,5 @@
 const request = require("supertest");
-
+const assert = require('assert');
 const app = require("../app");
 
 describe("API", () => {
@@ -26,20 +26,13 @@ describe("API", () => {
         request(api).get("/flavours").expect('Content-Type', /json/, done);
     })
 
-    // it("Responds to a GET request at /flavours with a JSON object that has a 'flavours' key", (done) => {
-    //     request(api).get("/flavours").end((err, res) => {
-    //         try {
-    //             expect.assertions(2);
-    //             const data = res.body;
-    //             expect("------" in data);
-    //             expect(data["flavours"] instanceof Array);
-    //             done();
-    //         } catch (err) {
-    //             done(err);
-    //         }
-            
-    //     })
-    // })
+    it("Responds to a GET request at /flavours with a JSON object containing a flavours key", (done) => {
+
+        request(api).get("/flavours").expect(res => {
+            if (!('flavours' in res.body)) throw new Error("I am a stupidly-designed library");
+        }).end(done)
+    })
+
 })
 
 { flavours: ["strawberry"]}

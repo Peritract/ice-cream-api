@@ -1,0 +1,21 @@
+{
+    "data": [
+        {
+            "id": 1,
+            "flavour": "pistachio",
+            "description": "delicious",
+            "vegan": false
+        },
+        {
+            "id": 2,
+            "flavour": "salted caramel",
+            "description": "delicious",
+            "vegan": true
+        },
+        {
+            "flavour": "cherry",
+            "description": "delicious",
+            "vegan": false
+        }
+    ]
+}

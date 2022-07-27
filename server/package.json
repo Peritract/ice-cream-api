@@ -1,7 +1,7 @@
 {
   "scripts": {
     "dev": "nodemon index.js",
-    "test": "jest --watch --verbose",
+    "test": "jest --verbose",
     "coverage": "jest --watch --coverage  --verbose"
   },
   "dependencies": {

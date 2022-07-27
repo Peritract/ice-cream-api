@@ -1,7 +1,8 @@
 const express = require("express");
 const cors = require("cors");
+const fs = require("fs");
 
-const data = require("./data");
+const data = JSON.parse(fs.readFileSync("data.json"), "utf-8");
 
 // Create an Express app
 const app = express();
@@ -18,16 +19,20 @@ app.get("/", (req, res) => {
 })
 
 app.get("/flavours", (req, res) => {
+    res.json(data);
+})
 
-    let flavours = data;
+app.post("/flavours", (req, res) => {
 
-    if (req.query.vegan === 'true') {
-        flavours = flavours.filter(f => f["vegan"]);
-    }
+    console.log(req.body);
+
+    data.data.push(req.body)
+    fs.writeFileSync("data.json", JSON.stringify(data));
 
     res.json({
-        flavours: flavours.map(f => f["flavour"])
-    })
+        success: true
+    });
+
 })
 
 app.get("/flavours/:id", (req, res) => {
